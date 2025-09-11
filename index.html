@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuteBrasil - O Futebol Brasileiro Ao Vivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+        }
+        .hero-bg {
+            background-image: linear-gradient(to top, rgba(17, 24, 39, 1) 0%, rgba(17, 24, 39, 0.6) 100%), url('https://images.unsplash.com/photo-1554148978-5527fde61340?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .brand-gradient-text {
+            background: -webkit-linear-gradient(45deg, #009c3b, #ffdf00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50 shadow-lg">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="https://iili.io/KIWN7Kg.png" alt="Logo FuteBrasil" class="h-12 w-auto">
+            </div>
+
+            <!-- Navigation Links (Desktop) -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#" class="text-gray-300 hover:text-white transition duration-300">Início</a>
+                <a href="#" class="text-gray-300 hover:text-white transition duration-300">Ao Vivo</a>
+                <a href="#" class="text-gray-300 hover:text-white transition duration-300">Jogos</a>
+                <a href="#" class="text-gray-300 hover:text-white transition duration-300">Times</a>
+            </div>
+
+            <!-- Login Button -->
+            <div>
+                <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-5 rounded-lg transition duration-300">
+                    Entrar
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-bg py-24 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4">
+                    A Emoção do Futebol Brasileiro, <br class="hidden md:block"> <span class="brand-gradient-text">Ao Vivo e Onde Você Quiser.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                    Não perca nenhum lance do seu time do coração. Transmissões em alta definição, estatísticas em tempo real e os melhores momentos.
+                </p>
+                <a href="#planos" class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold text-lg py-3 px-8 rounded-lg transition duration-300 inline-block shadow-lg">
+                    Assine Agora
+                </a>
+            </div>
+        </section>
+
+        <!-- Live Now Section -->
+        <section class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-10">Ao Vivo Agora</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Game Card 1 -->
+                    <div class="bg-gray-900 rounded-lg overflow-hidden shadow-xl transition duration-300 card-hover">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-red-500 font-semibold text-sm">● AO VIVO</span>
+                                <span class="text-gray-400 text-sm">Brasileirão Série A</span>
+                            </div>
+                            <div class="flex items-center justify-around text-center">
+                                <div class="w-1/3">
+                                    <img src="https://placehold.co/80x80/c0392b/ffffff?text=FLA" class="mx-auto rounded-full mb-2" alt="Logo Flamengo">
+                                    <h3 class="font-bold">Flamengo</h3>
+                                </div>
+                                <div class="text-4xl font-black">2 - 1</div>
+                                <div class="w-1/3">
+                                    <img src="https://placehold.co/80x80/ecf0f1/34495e?text=COR" class="mx-auto rounded-full mb-2" alt="Logo Corinthians">
+                                    <h3 class="font-bold">Corinthians</h3>
+                                </div>
+                            </div>
+                            <div class="mt-6 text-center">
+                                <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 w-full block">Assistir Agora</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Game Card 2 -->
+                    <div class="bg-gray-900 rounded-lg overflow-hidden shadow-xl transition duration-300 card-hover">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-red-500 font-semibold text-sm">● AO VIVO</span>
+                                <span class="text-gray-400 text-sm">Copa do Brasil</span>
+                            </div>
+                            <div class="flex items-center justify-around text-center">
+                                <div class="w-1/3">
+                                    <img src="https://placehold.co/80x80/27ae60/ffffff?text=PAL" class="mx-auto rounded-full mb-2" alt="Logo Palmeiras">
+                                    <h3 class="font-bold">Palmeiras</h3>
+                                </div>
+                                <div class="text-4xl font-black">0 - 0</div>
+                                <div class="w-1/3">
+                                    <img src="https://placehold.co/80x80/2c3e50/ffffff?text=SAO" class="mx-auto rounded-full mb-2" alt="Logo São Paulo">
+                                    <h3 class="font-bold">São Paulo</h3>
+                                </div>
+                            </div>
+                            <div class="mt-6 text-center">
+                                <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 w-full block">Assistir Agora</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Game Card 3 -->
+                    <div class="bg-gray-900 rounded-lg overflow-hidden shadow-xl transition duration-300 card-hover">
+                         <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-red-500 font-semibold text-sm">● AO VIVO</span>
+                                <span class="text-gray-400 text-sm">Brasileirão Série A</span>
+                            </div>
+                            <div class="flex items-center justify-around text-center">
+                                <div class="w-1/3">
+                                    <img src="https://placehold.co/80x80/3498db/ffffff?text=GRE" class="mx-auto rounded-full mb-2" alt="Logo Grêmio">
+                                    <h3 class="font-bold">Grêmio</h3>
+                                </div>
+                                <div class="text-4xl font-black">3 - 2</div>
+                                <div class="w-1/3">
+                                    <img src="https://placehold.co/80x80/e74c3c/ffffff?text=INT" class="mx-auto rounded-full mb-2" alt="Logo Internacional">
+                                    <h3 class="font-bold">Internacional</h3>
+                                </div>
+                            </div>
+                            <div class="mt-6 text-center">
+                                <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 w-full block">Assistir Agora</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Games Section -->
+        <section class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-10">Próximos Jogos</h2>
+                <div class="max-w-4xl mx-auto">
+                    <!-- Match Item -->
+                    <div class="flex items-center justify-between bg-gray-800 p-4 rounded-lg mb-4">
+                        <div class="text-center w-1/4">
+                            <p class="font-bold">SÁBADO</p>
+                            <p class="text-gray-400 text-sm">16:00</p>
+                        </div>
+                        <div class="flex-1 flex items-center justify-center space-x-4">
+                             <span class="font-semibold text-right w-2/5">Vasco da Gama</span>
+                             <img src="https://placehold.co/40x40/000000/ffffff?text=VAS" class="rounded-full" alt="Logo Vasco">
+                             <span class="text-gray-400">vs</span>
+                             <img src="https://placehold.co/40x40/e74c3c/ffffff?text=ATM" class="rounded-full" alt="Logo Atlético-MG">
+                             <span class="font-semibold text-left w-2/5">Atlético-MG</span>
+                        </div>
+                         <div class="w-1/4 text-right text-gray-400 text-sm">Brasileirão</div>
+                    </div>
+                     <!-- Match Item -->
+                    <div class="flex items-center justify-between bg-gray-800 p-4 rounded-lg mb-4">
+                        <div class="text-center w-1/4">
+                            <p class="font-bold">DOMINGO</p>
+                            <p class="text-gray-400 text-sm">18:00</p>
+                        </div>
+                        <div class="flex-1 flex items-center justify-center space-x-4">
+                             <span class="font-semibold text-right w-2/5">Fluminense</span>
+                             <img src="https://placehold.co/40x40/9b59b6/ffffff?text=FLU" class="rounded-full" alt="Logo Fluminense">
+                             <span class="text-gray-400">vs</span>
+                             <img src="https://placehold.co/40x40/16a085/ffffff?text=BOT" class="rounded-full" alt="Logo Botafogo">
+                             <span class="font-semibold text-left w-2/5">Botafogo</span>
+                        </div>
+                         <div class="w-1/4 text-right text-gray-400 text-sm">Copa do Brasil</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Plans Section -->
+        <section id="planos" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-2">Nossos Planos</h2>
+                <p class="text-center text-gray-400 mb-10">Escolha o plano perfeito para você e não perca nenhum jogo.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                    <!-- Monthly Plan -->
+                    <div class="bg-gray-900 p-8 rounded-lg border border-gray-700 w-full max-w-sm">
+                        <h3 class="text-2xl font-bold mb-2">Plano Mensal</h3>
+                        <p class="text-gray-400 mb-6">Acesso total por um mês.</p>
+                        <p class="text-5xl font-extrabold mb-6">R$29<span class="text-xl font-medium text-gray-400">,90/mês</span></p>
+                        <ul class="space-y-3 text-gray-300 mb-8">
+                            <li class="flex items-center"><span class="text-green-500 mr-2">✔</span> Acesso a todos os jogos</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-2">✔</span> Transmissão em HD</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-2">✔</span> Assista em até 2 telas</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-2">✔</span> Cancele quando quiser</li>
+                        </ul>
+                        <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg w-full transition duration-300">
+                            Escolher Plano
+                        </button>
+                    </div>
+
+                    <!-- Annual Plan -->
+                    <div class="bg-gray-900 p-8 rounded-lg border-2 border-yellow-400 w-full max-w-sm relative">
+                        <span class="absolute top-0 -translate-y-1/2 bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">MAIS POPULAR</span>
+                        <h3 class="text-2xl font-bold mb-2">Plano Anual</h3>
+                        <p class="text-gray-400 mb-6">Economize com o acesso por um ano.</p>
+                        <p class="text-5xl font-extrabold mb-6">R$299<span class="text-xl font-medium text-gray-400">,90/ano</span></p>
+                        <ul class="space-y-3 text-gray-300 mb-8">
+                           <li class="flex items-center"><span class="text-green-500 mr-2">✔</span> Acesso a todos os jogos</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-2">✔</span> Transmissão em 4K + HD</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-2">✔</span> Assista em até 4 telas</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-2">✔</span> Suporte prioritário</li>
+                        </ul>
+                        <button class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 rounded-lg w-full transition duration-300">
+                            Escolher Plano
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <img src="https://iili.io/KIWN7Kg.png" alt="Logo FuteBrasil" class="h-10">
+                </div>
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#" class="hover:text-white">Sobre Nós</a>
+                    <a href="#" class="hover:text-white">Contato</a>
+                    <a href="#" class="hover:text-white">Termos de Serviço</a>
+                    <a href="#" class="hover:text-white">Política de Privacidade</a>
+                </div>
+                 <div>
+                    <p>&copy; 2024 FuteBrasil. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
