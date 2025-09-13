@@ -3,45 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FuteBrasil - Ao Vivo</title>
+    <title>FuteBrasil - Palmeiras x Internacional Ao Vivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
-        /* Reseta margens e preenchimentos, garantindo que o player ocupe toda a tela */
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden; /* Esconde qualquer barra de rolagem */
-            background-color: #000; /* Fundo preto para uma experiência imersiva */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
         }
-
-        /* Container que vai 'cortar' as bordas do iframe */
-        .video-container {
-            position: absolute;
+        /* Overlay para o player em tela cheia */
+        #fullscreen-player-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden; /* A mágica acontece aqui: esconde tudo que vaza para fora */
+            background-color: #000;
+            display: none; /* Começa escondido */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
         }
-
-        /* O Iframe é escalado para ser maior que o container */
-        .video-container iframe {
-            position: absolute;
-            top: -7%; /* Puxa o iframe para cima para cortar a barra superior */
-            left: 0;
+        #fullscreen-player-overlay iframe {
             width: 100%;
-            height: 114%; /* Estica a altura para cortar a barra inferior */
-            border: none; /* Garante que não haja bordas do próprio iframe */
+            height: 100%;
+            border: none;
         }
     </style>
 </head>
-<body>
+<body class="text-white">
 
-    <!-- O player de vídeo agora é o único elemento na página -->
-    <div class="video-container">
-        <iframe src="https://kick.com/suplabrazil" scrolling="no" allowfullscreen="true"></iframe>
-    </div>
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50 shadow-lg">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://iili.io/KIWN7Kg.png" alt="Logo FuteBrasil" class="h-12 w-auto">
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#" class="text-gray-300 hover:text-white transition duration-300">Início</a>
+            </div>
+            <div>
+                <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-5 rounded-lg transition duration-300">
+                    Entrar
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Player Section -->
+        <section class="py-10 bg-black">
+            <div class="container mx-auto px-4">
+                 <h1 class="text-2xl md:text-3xl font-bold text-white leading-tight mb-4 text-center">
+                   AO VIVO: Palmeiras vs. Internacional
+                </h1>
+                <!-- Placeholder e Botão para iniciar o player -->
+                <div id="player-placeholder" class="max-w-4xl mx-auto bg-gray-900 rounded-lg shadow-xl aspect-video flex justify-center items-center">
+                    <button id="watch-button" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition duration-300 transform hover:scale-105">
+                        ▶ ASSISTIR AO VIVO
+                    </button>
+                </div>
+                 <p class="text-center text-gray-400 mt-4">Clique no botão para abrir a transmissão em tela cheia.</p>
+            </div>
+        </section>
+
+        <!-- Game Info Section -->
+        <section class="py-12 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="flex justify-center">
+                    <div class="bg-gray-900 rounded-lg overflow-hidden shadow-xl w-full max-w-lg p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-red-500 font-semibold text-sm animate-pulse">● AO VIVO</span>
+                            <span class="text-gray-400 text-sm">Brasileirão Série A</span>
+                        </div>
+                        <div class="flex items-center justify-around text-center">
+                            <div class="w-1/3">
+                                <img src="https://iili.io/Ku3aj99.png" class="mx-auto h-20 w-20 object-contain mb-2" alt="Logo Palmeiras">
+                                <h3 class="font-bold">Palmeiras</h3>
+                            </div>
+                            <div class="text-4xl font-black">vs</div>
+                            <div class="w-1/3">
+                                <img src="https://iili.io/Ku3aX87.png" class="mx-auto h-20 w-20 object-contain mb-2" alt="Logo Internacional">
+                                <h3 class="font-bold">Internacional</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Next Game Section -->
+        <section class="py-12 bg-gray-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-8">Próximo Jogo</h2>
+                 <div class="flex justify-center">
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-xl w-full max-w-lg p-6">
+                         <div class="flex justify-between items-center mb-4">
+                            <span class="text-yellow-400 font-semibold text-sm">HOJE ÀS 21:30</span>
+                            <span class="text-gray-400 text-sm">Brasileirão Série A</span>
+                        </div>
+                         <div class="flex items-center justify-around text-center">
+                            <div class="w-1/3">
+                                <img src="https://iili.io/Ku3lMk7.png" class="mx-auto h-20 w-20 object-contain mb-2" alt="Logo Corinthians">
+                                <h3 class="font-bold">Corinthians</h3>
+                            </div>
+                            <div class="text-4xl font-black">vs</div>
+                            <div class="w-1/3">
+                                <img src="https://iili.io/Ku3lG7S.png" class="mx-auto h-20 w-20 object-contain mb-2" alt="Logo Fluminense">
+                                <h3 class="font-bold">Fluminense</h3>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <p class="text-gray-400 mb-2">O JOGO COMEÇA EM:</p>
+                            <div id="countdown" class="text-4xl font-bold text-yellow-400"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400">
+        <div class="container mx-auto px-6 py-8">
+            <div class="text-center">
+                <img src="https://iili.io/KIWN7Kg.png" alt="Logo FuteBrasil" class="h-10 mx-auto mb-4">
+                <div class="flex justify-center space-x-6 mb-4">
+                    <a href="#" class="hover:text-white">Sobre Nós</a>
+                    <a href="#" class="hover:text-white">Contato</a>
+                    <a href="#" class="hover:text-white">Termos de Serviço</a>
+                </div>
+                 <p>&copy; 2024 FuteBrasil. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Container do player que será ativado em tela cheia -->
+    <div id="fullscreen-player-overlay"></div>
+    
+    <script>
+        // --- SCRIPT DO CRONÔMETRO ---
+        const countDownDate = new Date();
+        countDownDate.setHours(21, 30, 0, 0);
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            const countdownEl = document.getElementById("countdown");
+            if (countdownEl) {
+                countdownEl.innerHTML = 
+                    (hours < 10 ? "0" : "") + hours + ":" + 
+                    (minutes < 10 ? "0" : "") + minutes + ":" + 
+                    (seconds < 10 ? "0" : "") + seconds;
+            }
+                
+            if (distance < 0) {
+                clearInterval(x);
+                if(countdownEl) countdownEl.innerHTML = "O JOGO COMEÇOU!";
+            }
+        }, 1000);
+
+        // --- SCRIPT DO PLAYER TELA CHEIA ---
+        const watchButton = document.getElementById('watch-button');
+        const playerOverlay = document.getElementById('fullscreen-player-overlay');
+
+        watchButton.addEventListener('click', () => {
+            // Limpa o overlay caso já exista um iframe
+            playerOverlay.innerHTML = '';
+
+            // Cria o iframe
+            const iframe = document.createElement('iframe');
+            iframe.src = "https://kick.com/suplabrazil";
+            iframe.setAttribute('allowfullscreen', 'true');
+            
+            // Adiciona o iframe ao overlay
+            playerOverlay.appendChild(iframe);
+
+            // Mostra o overlay
+            playerOverlay.style.display = 'flex';
+
+            // Pede para o overlay entrar em tela cheia
+            if (playerOverlay.requestFullscreen) {
+                playerOverlay.requestFullscreen();
+            } else if (playerOverlay.webkitRequestFullscreen) { /* Safari */
+                playerOverlay.webkitRequestFullscreen();
+            } else if (playerOverlay.msRequestFullscreen) { /* IE11 */
+                playerOverlay.msRequestFullscreen();
+            }
+        });
+
+        // Ouve por mudanças no estado da tela cheia (ex: usuário apertou ESC)
+        document.addEventListener('fullscreenchange', () => {
+            // Se não houver mais nenhum elemento em tela cheia...
+            if (!document.fullscreenElement) {
+                // Esconde o overlay e remove o iframe para parar o vídeo
+                playerOverlay.style.display = 'none';
+                playerOverlay.innerHTML = '';
+            }
+        });
+    </script>
 
 </body>
 </html>
