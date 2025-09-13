@@ -13,7 +13,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #111827; /* bg-gray-900 */
         }
-        /* Overlay para o player em tela cheia */
+        /* Overlay para o player em ecrã inteiro */
         #fullscreen-player-overlay {
             position: fixed;
             top: 0;
@@ -65,7 +65,7 @@
                         ▶ ASSISTIR AO VIVO
                     </button>
                 </div>
-                 <p class="text-center text-gray-400 mt-4">Clique no botão para abrir a transmissão em tela cheia.</p>
+                 <p class="text-center text-gray-400 mt-4">Clique no botão para abrir a transmissão em ecrã inteiro.</p>
             </div>
         </section>
 
@@ -140,8 +140,10 @@
         </div>
     </footer>
 
-    <!-- Container do player que será ativado em tela cheia -->
-    <div id="fullscreen-player-overlay"></div>
+    <!-- Container do player que será ativado em ecrã inteiro -->
+    <div id="fullscreen-player-overlay">
+        <!-- O iframe é criado pelo JS, mas podemos deixar um template aqui -->
+    </div>
     
     <script>
         // --- SCRIPT DO CRONÔMETRO ---
@@ -169,21 +171,20 @@
             }
         }, 1000);
 
-        // --- SCRIPT DO PLAYER TELA CHEIA ---
+        // --- SCRIPT DO PLAYER ECRÃ INTEIRO (VERSÃO ROBUSTA) ---
         const watchButton = document.getElementById('watch-button');
         const playerOverlay = document.getElementById('fullscreen-player-overlay');
         
-        // Failsafe para garantir que o overlay comece escondido em todos os cenários
-        playerOverlay.style.display = 'none';
-
         watchButton.addEventListener('click', () => {
-            // Limpa o overlay caso já exista um iframe
+            // Limpa o overlay para garantir que não haja iframes antigos
             playerOverlay.innerHTML = '';
 
-            // Cria o iframe
+            // Cria o elemento iframe
             const iframe = document.createElement('iframe');
-            iframe.src = "https://kick.com/suplabrazil";
+            
+            // Define os atributos. O 'src' é definido AGORA, no momento do clique.
             iframe.setAttribute('allowfullscreen', 'true');
+            iframe.src = "https://kick.com/suplabrazil"; // URL do vídeo
             
             // Adiciona o iframe ao overlay
             playerOverlay.appendChild(iframe);
@@ -191,7 +192,7 @@
             // Mostra o overlay
             playerOverlay.style.display = 'flex';
 
-            // Pede para o overlay entrar em tela cheia
+            // Pede para o overlay entrar em ecrã inteiro
             if (playerOverlay.requestFullscreen) {
                 playerOverlay.requestFullscreen();
             } else if (playerOverlay.webkitRequestFullscreen) { /* Safari */
@@ -201,15 +202,17 @@
             }
         });
 
-        // Handler para sair da tela cheia
+        // Função para tratar a saída do ecrã inteiro
         function exitFullscreenHandler() {
-            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+            const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+            if (!isFullscreen) {
                 playerOverlay.style.display = 'none';
+                // Remove o iframe para parar o vídeo e o consumo de dados
                 playerOverlay.innerHTML = '';
             }
         }
 
-        // Ouve por mudanças no estado da tela cheia em diferentes navegadores
+        // Adiciona listeners para detetar a saída do ecrã inteiro em diferentes navegadores
         document.addEventListener('fullscreenchange', exitFullscreenHandler);
         document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
         document.addEventListener('msfullscreenchange', exitFullscreenHandler);
