@@ -172,6 +172,9 @@
         // --- SCRIPT DO PLAYER TELA CHEIA ---
         const watchButton = document.getElementById('watch-button');
         const playerOverlay = document.getElementById('fullscreen-player-overlay');
+        
+        // Failsafe para garantir que o overlay comece escondido em todos os cenários
+        playerOverlay.style.display = 'none';
 
         watchButton.addEventListener('click', () => {
             // Limpa o overlay caso já exista um iframe
@@ -198,15 +201,18 @@
             }
         });
 
-        // Ouve por mudanças no estado da tela cheia (ex: usuário apertou ESC)
-        document.addEventListener('fullscreenchange', () => {
-            // Se não houver mais nenhum elemento em tela cheia...
-            if (!document.fullscreenElement) {
-                // Esconde o overlay e remove o iframe para parar o vídeo
+        // Handler para sair da tela cheia
+        function exitFullscreenHandler() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
                 playerOverlay.style.display = 'none';
                 playerOverlay.innerHTML = '';
             }
-        });
+        }
+
+        // Ouve por mudanças no estado da tela cheia em diferentes navegadores
+        document.addEventListener('fullscreenchange', exitFullscreenHandler);
+        document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
+        document.addEventListener('msfullscreenchange', exitFullscreenHandler);
     </script>
 
 </body>
