@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FuteBrasil - Palmeiras x Internacional Ao Vivo</title>
+    <title>FuteBrasil - Corinthians x Fluminense</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,53 +53,12 @@
     </header>
 
     <main>
-        <!-- Player Section -->
-        <section class="py-10 bg-black">
-            <div class="container mx-auto px-4">
-                 <h1 class="text-2xl md:text-3xl font-bold text-white leading-tight mb-4 text-center">
-                   AO VIVO: Palmeiras vs. Internacional
-                </h1>
-                <!-- Placeholder e Botão para iniciar o player -->
-                <div id="player-placeholder" class="max-w-4xl mx-auto bg-gray-900 rounded-lg shadow-xl aspect-video flex justify-center items-center">
-                    <button id="watch-button" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition duration-300 transform hover:scale-105">
-                        ▶ ASSISTIR AO VIVO
-                    </button>
-                </div>
-                 <p class="text-center text-gray-400 mt-4">Clique no botão para abrir a transmissão em ecrã inteiro.</p>
-            </div>
-        </section>
-
-        <!-- Game Info Section -->
-        <section class="py-12 bg-gray-800">
-            <div class="container mx-auto px-6">
-                <div class="flex justify-center">
-                    <div class="bg-gray-900 rounded-lg overflow-hidden shadow-xl w-full max-w-lg p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="text-red-500 font-semibold text-sm animate-pulse">● AO VIVO</span>
-                            <span class="text-gray-400 text-sm">Brasileirão Série A</span>
-                        </div>
-                        <div class="flex items-center justify-around text-center">
-                            <div class="w-1/3">
-                                <img src="https://iili.io/Ku3aj99.png" class="mx-auto h-20 w-20 object-contain mb-2" alt="Logo Palmeiras">
-                                <h3 class="font-bold">Palmeiras</h3>
-                            </div>
-                            <div class="text-4xl font-black">vs</div>
-                            <div class="w-1/3">
-                                <img src="https://iili.io/Ku3aX87.png" class="mx-auto h-20 w-20 object-contain mb-2" alt="Logo Internacional">
-                                <h3 class="font-bold">Internacional</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
         <!-- Next Game Section -->
-        <section class="py-12 bg-gray-900">
+        <section class="py-20 bg-gray-900">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl font-bold mb-8">Próximo Jogo</h2>
+                <h2 class="text-3xl font-bold mb-8">Jogo de Hoje</h2>
                  <div class="flex justify-center">
-                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-xl w-full max-w-lg p-6">
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-xl w-full max-w-lg p-8">
                          <div class="flex justify-between items-center mb-4">
                             <span class="text-yellow-400 font-semibold text-sm">HOJE ÀS 21:30</span>
                             <span class="text-gray-400 text-sm">Brasileirão Série A</span>
@@ -115,9 +74,18 @@
                                 <h3 class="font-bold">Fluminense</h3>
                             </div>
                         </div>
-                        <div class="mt-6">
-                            <p class="text-gray-400 mb-2">O JOGO COMEÇA EM:</p>
-                            <div id="countdown" class="text-4xl font-bold text-yellow-400"></div>
+                        <div class="mt-8">
+                            <div id="status-container">
+                                <!-- Timer -->
+                                <div id="timer-wrapper">
+                                    <p class="text-gray-400 mb-2">O JOGO COMEÇA EM:</p>
+                                    <div id="countdown" class="text-4xl font-bold text-yellow-400"></div>
+                                </div>
+                                <!-- Botão (inicialmente escondido) -->
+                                <button id="watch-button" class="hidden mx-auto bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition duration-300 transform hover:scale-105">
+                                    ▶ ASSISTIR AO VIVO
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -141,78 +109,74 @@
     </footer>
 
     <!-- Container do player que será ativado em ecrã inteiro -->
-    <div id="fullscreen-player-overlay">
-        <!-- O iframe é criado pelo JS, mas podemos deixar um template aqui -->
-    </div>
+    <div id="fullscreen-player-overlay"></div>
     
     <script>
-        // --- SCRIPT DO CRONÔMETRO ---
+        // --- SCRIPT DO CRONÔMETRO E BOTÃO ---
         const countDownDate = new Date();
         countDownDate.setHours(21, 30, 0, 0);
 
-        const x = setInterval(function() {
+        const timerWrapper = document.getElementById('timer-wrapper');
+        const watchButton = document.getElementById('watch-button');
+        const countdownEl = document.getElementById("countdown");
+
+        function checkTime() {
             const now = new Date().getTime();
             const distance = countDownDate - now;
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            const countdownEl = document.getElementById("countdown");
-            if (countdownEl) {
-                countdownEl.innerHTML = 
-                    (hours < 10 ? "0" : "") + hours + ":" + 
-                    (minutes < 10 ? "0" : "") + minutes + ":" + 
-                    (seconds < 10 ? "0" : "") + seconds;
-            }
-                
+
             if (distance < 0) {
-                clearInterval(x);
-                if(countdownEl) countdownEl.innerHTML = "O JOGO COMEÇOU!";
+                if(x) clearInterval(x);
+                timerWrapper.style.display = 'none';
+                watchButton.style.display = 'block';
+                watchButton.classList.remove('hidden');
+            } else {
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                if (countdownEl) {
+                    countdownEl.innerHTML = 
+                        (hours < 10 ? "0" : "") + hours + ":" + 
+                        (minutes < 10 ? "0" : "") + minutes + ":" + 
+                        (seconds < 10 ? "0" : "") + seconds;
+                }
             }
-        }, 1000);
+        }
+        
+        // Verifica o tempo imediatamente ao carregar a página
+        checkTime();
+        // E continua a verificar a cada segundo
+        const x = setInterval(checkTime, 1000);
+
 
         // --- SCRIPT DO PLAYER ECRÃ INTEIRO (VERSÃO ROBUSTA) ---
-        const watchButton = document.getElementById('watch-button');
         const playerOverlay = document.getElementById('fullscreen-player-overlay');
         
         watchButton.addEventListener('click', () => {
-            // Limpa o overlay para garantir que não haja iframes antigos
             playerOverlay.innerHTML = '';
-
-            // Cria o elemento iframe
             const iframe = document.createElement('iframe');
-            
-            // Define os atributos. O 'src' é definido AGORA, no momento do clique.
             iframe.setAttribute('allowfullscreen', 'true');
             iframe.src = "https://kick.com/suplabrazil"; // URL do vídeo
-            
-            // Adiciona o iframe ao overlay
             playerOverlay.appendChild(iframe);
-
-            // Mostra o overlay
             playerOverlay.style.display = 'flex';
 
-            // Pede para o overlay entrar em ecrã inteiro
             if (playerOverlay.requestFullscreen) {
                 playerOverlay.requestFullscreen();
-            } else if (playerOverlay.webkitRequestFullscreen) { /* Safari */
+            } else if (playerOverlay.webkitRequestFullscreen) {
                 playerOverlay.webkitRequestFullscreen();
-            } else if (playerOverlay.msRequestFullscreen) { /* IE11 */
+            } else if (playerOverlay.msRequestFullscreen) {
                 playerOverlay.msRequestFullscreen();
             }
         });
 
-        // Função para tratar a saída do ecrã inteiro
         function exitFullscreenHandler() {
             const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
             if (!isFullscreen) {
                 playerOverlay.style.display = 'none';
-                // Remove o iframe para parar o vídeo e o consumo de dados
                 playerOverlay.innerHTML = '';
             }
         }
 
-        // Adiciona listeners para detetar a saída do ecrã inteiro em diferentes navegadores
         document.addEventListener('fullscreenchange', exitFullscreenHandler);
         document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
         document.addEventListener('msfullscreenchange', exitFullscreenHandler);
