@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FuteBrasil - Coritiba x Goiás Ao Vivo</title>
+    <title>FuteBrasil - Palmeiras x Internacional Ao Vivo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,10 +59,10 @@
         <section class="py-10 bg-black">
             <div class="container mx-auto px-4">
                  <h1 class="text-2xl md:text-3xl font-bold text-white leading-tight mb-4 text-center">
-                   AO VIVO: Coritiba vs. Goiás
+                   AO VIVO: Palmeiras vs. Internacional
                 </h1>
                 <div class="iframe-container max-w-4xl mx-auto bg-gray-800 rounded-lg shadow-xl">
-                    <iframe name="Player" src="" scrolling="no" allow="encrypted-media" allowFullScreen></iframe>
+                    <iframe src="https://kick.com/suplabrazil" scrolling="no" allowfullscreen="true"></iframe>
                 </div>
                  <p class="text-center text-gray-400 mt-4">Se a transmissão travar, aguarde alguns segundos ou atualize a página.</p>
             </div>
@@ -77,17 +77,17 @@
                         <div class="p-6">
                             <div class="flex justify-between items-center mb-4">
                                 <span class="text-red-500 font-semibold text-sm animate-pulse">● AO VIVO</span>
-                                <span class="text-gray-400 text-sm">Brasileirão Série B</span>
+                                <span class="text-gray-400 text-sm">Brasileirão Série A</span>
                             </div>
                             <div class="flex items-center justify-around text-center">
                                 <div class="w-1/3">
-                                    <img src="https://placehold.co/80x80/00644d/ffffff?text=CFC" class="mx-auto rounded-full mb-2" alt="Logo Coritiba">
-                                    <h3 class="font-bold">Coritiba</h3>
+                                    <img src="https://iili.io/Ku3aj99.png" class="mx-auto h-20 w-20 object-contain mb-2" alt="Logo Palmeiras">
+                                    <h3 class="font-bold">Palmeiras</h3>
                                 </div>
                                 <div class="text-4xl font-black">vs</div>
                                 <div class="w-1/3">
-                                    <img src="https://placehold.co/80x80/008000/ffffff?text=GOI" class="mx-auto rounded-full mb-2" alt="Logo Goiás">
-                                    <h3 class="font-bold">Goiás</h3>
+                                    <img src="https://iili.io/Ku3aX87.png" class="mx-auto h-20 w-20 object-contain mb-2" alt="Logo Internacional">
+                                    <h3 class="font-bold">Internacional</h3>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,36 @@
                 </div>
             </div>
         </section>
-
+        
+        <!-- Next Game Section -->
+        <section class="py-12 bg-gray-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-8">Próximo Jogo</h2>
+                 <div class="flex justify-center">
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-xl w-full max-w-lg p-6">
+                         <div class="flex justify-between items-center mb-4">
+                            <span class="text-yellow-400 font-semibold text-sm">HOJE ÀS 21:30</span>
+                            <span class="text-gray-400 text-sm">Brasileirão Série A</span>
+                        </div>
+                         <div class="flex items-center justify-around text-center">
+                            <div class="w-1/3">
+                                <img src="https://iili.io/Ku3lMk7.png" class="mx-auto h-20 w-20 object-contain mb-2" alt="Logo Corinthians">
+                                <h3 class="font-bold">Corinthians</h3>
+                            </div>
+                            <div class="text-4xl font-black">vs</div>
+                            <div class="w-1/3">
+                                <img src="https://iili.io/Ku3lG7S.png" class="mx-auto h-20 w-20 object-contain mb-2" alt="Logo Fluminense">
+                                <h3 class="font-bold">Fluminense</h3>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <p class="text-gray-400 mb-2">O JOGO COMEÇA EM:</p>
+                            <div id="countdown" class="text-4xl font-bold text-yellow-400"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
@@ -118,6 +147,39 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+        // Set the date we're counting down to
+        const countDownDate = new Date();
+        countDownDate.setHours(21, 30, 0, 0); // 21:30:00 today
+
+        // Update the count down every 1 second
+        const x = setInterval(function() {
+
+            // Get today's date and time
+            const now = new Date().getTime();
+                
+            // Find the distance between now and the count down date
+            const distance = countDownDate - now;
+                
+            // Time calculations for hours, minutes and seconds
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+            // Output the result in an element with id="countdown"
+            document.getElementById("countdown").innerHTML = 
+                (hours < 10 ? "0" : "") + hours + ":" + 
+                (minutes < 10 ? "0" : "") + minutes + ":" + 
+                (seconds < 10 ? "0" : "") + seconds;
+                
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "O JOGO COMEÇOU!";
+            }
+        }, 1000);
+    </script>
 
 </body>
 </html>
