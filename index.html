@@ -60,7 +60,7 @@
                  <div class="flex justify-center">
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-xl w-full max-w-lg p-8">
                          <div class="flex justify-between items-center mb-4">
-                            <span class="text-yellow-400 font-semibold text-sm">HOJE ÀS 21:30</span>
+                            <span class="text-red-500 font-semibold text-sm animate-pulse">AO VIVO</span>
                             <span class="text-gray-400 text-sm">Brasileirão Série A</span>
                         </div>
                          <div class="flex items-center justify-around text-center">
@@ -76,13 +76,8 @@
                         </div>
                         <div class="mt-8">
                             <div id="status-container">
-                                <!-- Timer -->
-                                <div id="timer-wrapper">
-                                    <p class="text-gray-400 mb-2">O JOGO COMEÇA EM:</p>
-                                    <div id="countdown" class="text-4xl font-bold text-yellow-400"></div>
-                                </div>
-                                <!-- Botão (inicialmente escondido) -->
-                                <button id="watch-button" class="hidden mx-auto bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition duration-300 transform hover:scale-105">
+                                <!-- Botão -->
+                                <button id="watch-button" class="mx-auto bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition duration-300 transform hover:scale-105">
                                     ▶ ASSISTIR AO VIVO
                                 </button>
                             </div>
@@ -112,51 +107,16 @@
     <div id="fullscreen-player-overlay"></div>
     
     <script>
-        // --- SCRIPT DO CRONÔMETRO E BOTÃO ---
-        const countDownDate = new Date();
-        countDownDate.setHours(21, 30, 0, 0);
-
-        const timerWrapper = document.getElementById('timer-wrapper');
-        const watchButton = document.getElementById('watch-button');
-        const countdownEl = document.getElementById("countdown");
-
-        function checkTime() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
-
-            if (distance < 0) {
-                if(x) clearInterval(x);
-                timerWrapper.style.display = 'none';
-                watchButton.style.display = 'block';
-                watchButton.classList.remove('hidden');
-            } else {
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                
-                if (countdownEl) {
-                    countdownEl.innerHTML = 
-                        (hours < 10 ? "0" : "") + hours + ":" + 
-                        (minutes < 10 ? "0" : "") + minutes + ":" + 
-                        (seconds < 10 ? "0" : "") + seconds;
-                }
-            }
-        }
-        
-        // Verifica o tempo imediatamente ao carregar a página
-        checkTime();
-        // E continua a verificar a cada segundo
-        const x = setInterval(checkTime, 1000);
-
-
         // --- SCRIPT DO PLAYER ECRÃ INTEIRO (VERSÃO ROBUSTA) ---
         const playerOverlay = document.getElementById('fullscreen-player-overlay');
+        const watchButton = document.getElementById('watch-button');
         
         watchButton.addEventListener('click', () => {
             playerOverlay.innerHTML = '';
             const iframe = document.createElement('iframe');
             iframe.setAttribute('allowfullscreen', 'true');
-            iframe.src = "https://kick.com/suplabrazil"; // URL do vídeo
+            // Link da Kick atualizado
+            iframe.src = "https://player.kick.com/suplabrazil"; // URL do vídeo
             playerOverlay.appendChild(iframe);
             playerOverlay.style.display = 'flex';
 
